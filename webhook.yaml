@@ -1,0 +1,28 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: remaw
+  labels:
+    app: remaw
+    team: aura
+    component: redis
+  webhooks:
+    - name: "remaw.nais.io"
+      failurePolicy: true
+      rules:
+        - apiGroups:
+            - ""
+          apiVersions:
+            - "v1"
+          operations:
+            - "CREATE"
+            - "UPDATE"
+          resources:
+            - "pods"
+      clientConfig:
+        service:
+          # name: ""
+          # namespace: nais
+          # path: "/mutate"
+          url: local.fqdn
+        caBundle: ca-bundle
