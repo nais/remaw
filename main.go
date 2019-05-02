@@ -28,10 +28,10 @@ func jsonFormatter() log.Formatter {
 func run() error {
 	var parameters Parameters
 
-	flag.StringVar(&parameters.certFile, "tlsCertFile", "/etc/webhook/certs/cert.pem", "File containing the x509 Certificate for HTTPS.")
-	flag.StringVar(&parameters.keyFile, "tlsKeyFile", "/etc/webhook/certs/key.pem", "File containing the x509 private key to --tlsCertFile.")
-	flag.StringVar(&parameters.LogFormat, "log-format", parameters.LogFormat, "Log format, either 'json' or 'text'")
-	flag.StringVar(&parameters.LogLevel, "log-level", parameters.LogLevel, "Logging verbosity level")
+	flag.StringVar(&parameters.certFile, "cert", "./cert.pem", "File containing the x509 Certificate for HTTPS.")
+	flag.StringVar(&parameters.keyFile, "key", "./key.pem", "File containing the x509 private key to --tlsCertFile.")
+	flag.StringVar(&parameters.LogFormat, "log-format", "text", "Log format, either 'json' or 'text'")
+	flag.StringVar(&parameters.LogLevel, "log-level", "info", "Logging verbosity level")
 	flag.Parse()
 
 	switch parameters.LogFormat {
