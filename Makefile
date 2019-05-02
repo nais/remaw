@@ -13,9 +13,9 @@ release:
 	go build -a -installsuffix cgo -o remaw -ldflags "-s $(LDFLAGS)"
 
 setup-local:
-	kubectl apply -f webhook.yaml
 	./gen-cert.sh
 	./ca-bundle.sh
+	kubectl apply -f ./webhook.yaml
 
 local:
 	./remaw --cert ./cert.pem --key ./key.pem
